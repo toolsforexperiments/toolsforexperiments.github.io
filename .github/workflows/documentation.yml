@@ -24,11 +24,11 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Set up Mamba
+      - name: Set up Conda
         uses: conda-incubator/setup-miniconda@v3
         with:
 #          miniforge-variant: Mambaforge
-          use-mamba: true
+#          use-mamba: true
           environment-file: environment.yml
 
       - name: Build documentation
