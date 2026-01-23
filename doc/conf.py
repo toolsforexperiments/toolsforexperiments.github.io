@@ -30,6 +30,7 @@ language = "en"
 html_theme = "pydata_sphinx_theme"
 html_static_path = ['_static']
 html_logo = '_static/logo.png'
+html_baseurl = 'https://toolsforexperiments.github.io/toolsforexperiments/'
 
 html_theme_options = {
     "logo": {

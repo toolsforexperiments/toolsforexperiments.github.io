@@ -27,10 +27,7 @@ jobs:
       - name: Set up Conda
         uses: conda-incubator/setup-miniconda@v3
         with:
-#          miniforge-variant: Mambaforge
-#          use-mamba: true
           environment-file: environment.yml
-
       - name: Build documentation
         shell: bash -l {0}
         run: make html
