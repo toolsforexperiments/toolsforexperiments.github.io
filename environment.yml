@@ -1,8 +1,0 @@
-name: tfe-docs
-channels:
-  - conda-forge
-dependencies:
-  - python=3.13.*
-  - sphinx
-  - pydata-sphinx-theme
-  - myst-parser
