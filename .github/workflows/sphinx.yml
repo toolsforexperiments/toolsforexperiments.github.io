@@ -11,8 +11,15 @@ jobs:
     - uses: actions/checkout@v4
       with:
         persist-credentials: false
+    - name: Set up conda
+      uses: conda-incubator/setup-miniconda@v3
+      with:
+        auto-activate-base: true
+        activate-environment: tfe-docs
+        environment-file: environment.yml
     - name: Build HTML
-      uses: ammaraskar/sphinx-action@master
+      shell: bash -l {0}
+      run: cd docs && make html
     - name: Upload artifacts
       uses: actions/upload-artifact@v4
       with:
