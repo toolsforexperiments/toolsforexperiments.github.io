@@ -11,15 +11,14 @@ jobs:
     - uses: actions/checkout@v4
       with:
         persist-credentials: false
-    - name: Set up conda
-      uses: conda-incubator/setup-miniconda@v3
+    - name: Set up uv
+      uses: astral-sh/setup-uv@v5
       with:
-        auto-activate-base: true
-        activate-environment: tfe-docs
-        environment-file: environment.yml
+        python-version: "3.13"
+    - name: Install dependencies
+      run: uv sync
     - name: Build HTML
-      shell: bash -l {0}
-      run: cd docs && make html
+      run: cd docs && uv run make html
     - name: Upload artifacts
       uses: actions/upload-artifact@v4
       with:
