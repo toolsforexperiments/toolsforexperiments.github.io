@@ -516,6 +516,28 @@ uv<span class="w"> </span>run<span class="w"> </span>jupyter<span class="w"> </s
 </pre></div>
 </div>
 </section>
+<section id="registering-the-environment-as-a-jupyter-kernel">
+<h3>Registering the environment as a Jupyter kernel<a class="headerlink" href="#registering-the-environment-as-a-jupyter-kernel" title="Link to this heading">#</a></h3>
+<p>uv does not automatically register your virtual environment as a Jupyter kernel. This is by design — uv manages only the environment itself, not the kernel registry that Jupyter uses to discover Python environments. As a result, even after running <code class="docutils literal notranslate"><span class="pre">uv</span> <span class="pre">sync</span></code>, your environment will not appear in JupyterLab’s kernel picker until you register it manually.</p>
+<p>To register it, first make sure <code class="docutils literal notranslate"><span class="pre">ipykernel</span></code> is installed in the environment, then use it to add the kernel to Jupyter’s registry:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>uv<span class="w"> </span>add<span class="w"> </span>ipykernel
+uv<span class="w"> </span>run<span class="w"> </span>python<span class="w"> </span>-m<span class="w"> </span>ipykernel<span class="w"> </span>install<span class="w"> </span>--user<span class="w"> </span>--name<span class="w"> </span>my-experiment<span class="w"> </span>--display-name<span class="w"> </span><span class="s2">&quot;My Experiment&quot;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">--name</span></code> is a short identifier used internally (no spaces).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--display-name</span></code> is what appears in the JupyterLab UI.</p></li>
+</ul>
+<p>After running this, restart JupyterLab and the kernel will be available in the launcher and the kernel picker.</p>
+<p>To list all registered kernels:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>uv<span class="w"> </span>run<span class="w"> </span>jupyter<span class="w"> </span>kernelspec<span class="w"> </span>list
+</pre></div>
+</div>
+<p>To remove a kernel you no longer need:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>uv<span class="w"> </span>run<span class="w"> </span>jupyter<span class="w"> </span>kernelspec<span class="w"> </span>remove<span class="w"> </span>my-experiment
+</pre></div>
+</div>
+</section>
 <section id="adding-new-dependencies">
 <h3>Adding new dependencies<a class="headerlink" href="#adding-new-dependencies" title="Link to this heading">#</a></h3>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>uv<span class="w"> </span>add<span class="w"> </span>some-package
@@ -679,6 +701,7 @@ pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </s
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#project-structure-pyproject-toml">Project structure: <code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-and-syncing-the-environment">Creating and syncing the environment</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#activating-the-environment">Activating the environment</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#registering-the-environment-as-a-jupyter-kernel">Registering the environment as a Jupyter kernel</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-new-dependencies">Adding new dependencies</a></li>
 </ul>
 </li>

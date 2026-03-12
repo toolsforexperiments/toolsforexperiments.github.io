@@ -88,6 +88,34 @@ uv run python my_script.py
 uv run jupyter lab
 ```
 
+### Registering the environment as a Jupyter kernel
+
+uv does not automatically register your virtual environment as a Jupyter kernel. This is by design — uv manages only the environment itself, not the kernel registry that Jupyter uses to discover Python environments. As a result, even after running `uv sync`, your environment will not appear in JupyterLab's kernel picker until you register it manually.
+
+To register it, first make sure `ipykernel` is installed in the environment, then use it to add the kernel to Jupyter's registry:
+
+```bash
+uv add ipykernel
+uv run python -m ipykernel install --user --name my-experiment --display-name "My Experiment"
+```
+
+- `--name` is a short identifier used internally (no spaces).
+- `--display-name` is what appears in the JupyterLab UI.
+
+After running this, restart JupyterLab and the kernel will be available in the launcher and the kernel picker.
+
+To list all registered kernels:
+
+```bash
+uv run jupyter kernelspec list
+```
+
+To remove a kernel you no longer need:
+
+```bash
+uv run jupyter kernelspec remove my-experiment
+```
+
 ### Adding new dependencies
 
 ```bash
