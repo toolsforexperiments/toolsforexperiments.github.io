@@ -103,3 +103,10 @@ A circuit-QED measurement session tends to look like this:
 
 Each step uses a different package, but you rarely notice the seams, and that is the point. The packages are separate so that each can be developed, tested, and documented on its own terms, not so that you have to think about them separately as a user.
 
+## Where to go next
+
+- **labcore**: [source](https://github.com/toolsforexperiments/labcore) and [documentation](https://toolsforexperiments.github.io/labcore/)
+- **instrumentserver**: [source](https://github.com/toolsforexperiments/instrumentserver) and [documentation](https://toolsforexperiments.github.io/instrumentserver/)
+- **plottr**: [source](https://github.com/toolsforexperiments/plottr) and [documentation](https://toolsforexperiments.github.io/plottr/)
+- **CQEDToolbox**: [source](https://github.com/toolsforexperiments/CQEDToolbox) (see the repository README for setup and usage)
+
