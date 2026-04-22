@@ -1,9 +1,10 @@
-# Contributing Guide
+# Contributing
 
-The following is a contributing Guide.
+Everything you need to set up a development environment and contribute code or documentation to any of the Tools for Experiments repositories.
 
 ```{toctree}
-:caption: How do I contribute
+:maxdepth: 2
 
-setting_up
+environment_setup
+contributing
 ```
