@@ -5,6 +5,7 @@ General guides and resources for working within the Tools for Experiments organi
 ```{toctree}
 :maxdepth: 2
 
+software_map
 organization
 environment_setup
 contributing
