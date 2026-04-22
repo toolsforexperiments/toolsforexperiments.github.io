@@ -6,6 +6,7 @@ General guides and resources for working within the Tools for Experiments organi
 :maxdepth: 2
 
 software_map
+philosophy
 organization
 environment_setup
 contributing
