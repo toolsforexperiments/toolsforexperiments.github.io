@@ -65,11 +65,11 @@
   },
   "parameter_manager.q01.res_spec_end": {
     "unit": "Hz",
-    "value": 7012500000.0
+    "value": 7085000000.0
   },
   "parameter_manager.q01.res_spec_start": {
     "unit": "Hz",
-    "value": 6987500000.0
+    "value": 7060000000.0
   },
   "parameter_manager.q01.res_spec_steps": {
     "unit": "",
