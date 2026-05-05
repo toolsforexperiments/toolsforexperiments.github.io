@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>About Our Organization &#8212; Tools for Experiments  documentation</title>
+    <title>What We Are Working On &#8212; Tools for Experiments  documentation</title>
   
   
   
@@ -41,12 +41,12 @@
     <script src="../_static/documentation_options.js?v=5929fcd5"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'guides/organization';</script>
-    <link rel="canonical" href="https://toolsforexperiments.github.io/toolsforexperiments/guides/organization.html" />
+    <script>DOCUMENTATION_OPTIONS.pagename = 'about_us/roadmap';</script>
+    <link rel="canonical" href="https://toolsforexperiments.github.io/toolsforexperiments/about_us/roadmap.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Our Philosophy" href="philosophy.html" />
-    <link rel="prev" title="About Us" href="index.html" />
+    <link rel="next" title="Examples" href="../examples/index.html" />
+    <link rel="prev" title="The Software Landscape" href="software_map.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -372,9 +372,10 @@
      aria-label="Section Navigation">
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
   <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">About Our Organization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="organization.html">About Our Organization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="philosophy.html">Our Philosophy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="software_map.html">The Software Landscape</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">What We Are Working On</a></li>
 </ul>
 </div>
 </nav></div>
@@ -418,7 +419,7 @@
     
     <li class="breadcrumb-item"><a href="index.html" class="nav-link">About Us</a></li>
     
-    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">About Our Organization</span></li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">What We Are Working On</span></li>
   </ul>
 </nav>
 </div>
@@ -435,10 +436,47 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="about-our-organization">
-<h1>About Our Organization<a class="headerlink" href="#about-our-organization" title="Link to this heading">#</a></h1>
-<p>General information about the Tools for Experiments organization.</p>
-<!-- Add organization-wide information here: team structure, communication channels, conventions, etc. -->
+  <section id="what-we-are-working-on">
+<h1>What We Are Working On<a class="headerlink" href="#what-we-are-working-on" title="Link to this heading">#</a></h1>
+<p>These are the ideas we have for where to take Tools for Experiments next. We are not committed to any of them, and the list will probably change as experiments push us in new directions. It is also not exhaustive — bug fixes and small improvements happen continuously and don’t show up here.</p>
+<p>If anything below would be useful to you, or you’d like to help, open an issue on the relevant repository, reach out, or open a PR directly!</p>
+<section id="right-now-documentation-examples-packaging">
+<h2>Right now: documentation, examples, packaging<a class="headerlink" href="#right-now-documentation-examples-packaging" title="Link to this heading">#</a></h2>
+<p>Our current priority, ahead of new features, is making sure what we already have is well-documented, easy to install, and has at least one good worked example. The packages have grown faster than their public surface, and we want anyone landing on a repository to be able to see what it does and try it out without reading the source.</p>
+<p>Concretely:</p>
+<ul class="simple">
+<li><p><strong>Publishing every package on PyPI</strong>, so installing is <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">plottr</span></code> rather than a clone. labcore, instrumentserver, and plottr are the immediate targets.</p></li>
+<li><p><strong>A documentation and examples audit</strong> across the stack, package by package — every tool gets a worked example and a clear use-case statement, we close the most visible gaps in the docs we already have, and we make a deliberate pass at advertising the pieces that aren’t well known yet.</p></li>
+<li><p><strong>A protocol tutorial</strong> that walks through turning an existing measurement script into a <code class="docutils literal notranslate"><span class="pre">Protocol</span></code>, so other groups can adopt the workflow without having to reverse-engineer it from the source.</p></li>
+<li><p><strong>A proper docs page for the instrument-server monitor</strong>, which is one of the more useful things we have built and currently one of the least visible.</p></li>
+</ul>
+</section>
+<section id="next-a-protocol-driven-measurement-workflow">
+<h2>Next: a protocol-driven measurement workflow<a class="headerlink" href="#next-a-protocol-driven-measurement-workflow" title="Link to this heading">#</a></h2>
+<p>The longer-running theme is making <code class="docutils literal notranslate"><span class="pre">Protocol</span></code> an active piece of the measurement workflow rather than a script wrapper. The pieces below build on each other in roughly this order.</p>
+<ul class="simple">
+<li><p><strong>A parameter-source interface for protocols.</strong> A protocol should be able to take its starting state from <code class="docutils literal notranslate"><span class="pre">instrumentserver</span></code>, a plain config dictionary (including callable values for derived parameters), or anything else that satisfies the interface. This unblocks groups that want to use protocols without buying into the rest of the stack.</p></li>
+<li><p><strong>A plottr-app substrate for protocol GUIs.</strong> plottr already provides the right kind of GUI primitives for live, data-driven applications; protocol GUIs should be built on top of it so users who only want a measurement GUI can use plottr directly.</p></li>
+<li><p><strong>Per-operation GUIs with live updates.</strong> Each operation in a protocol gets a GUI that runs the measurement, populates the analysis, and shows fits as they appear, all reusing structure already encoded in the protocol class.</p></li>
+<li><p><strong>Multi-step protocol GUIs</strong>, with a qubit tune-up sequence as the working demo: one window, several operations chained, raw data, and fits visible side by side as the run progresses.</p></li>
+<li><p><strong>Corrections and next-step suggestions.</strong> When an analysis flags a measurement as failed, the protocol exposes what to try next, so the workflow becomes interactive instead of a one-shot script.</p></li>
+</ul>
+</section>
+<section id="also-on-the-bench">
+<h2>Also on the bench<a class="headerlink" href="#also-on-the-bench" title="Link to this heading">#</a></h2>
+<p>Usability and feature work that doesn’t fit cleanly under the two themes above:</p>
+<ul class="simple">
+<li><p><strong>A spreadsheet-style batch editor for the parameter manager</strong>, with keyboard-only navigation and batch import/export — the current GUI is the right shape but slow to use for non-trivial edits.</p></li>
+<li><p><strong>Defining the role and workflow of the instrument-server monitor</strong>, so the docs upgrade mentioned above has something to describe. The functionality is there; the framing is not.</p></li>
+</ul>
+</section>
+<section id="further-out">
+<h2>Further out<a class="headerlink" href="#further-out" title="Link to this heading">#</a></h2>
+<p>Things we expect to turn to once the above settles but aren’t actively scoping yet:</p>
+<ul class="simple">
+<li><p><strong>Run-integrated lab-notebook entries.</strong> Auto-recorded, searchable notes tied to specific measurement runs, surfaced inside the measurement GUI. The shape of this depends on a separate question we are still working through — how to keep our lab notebook sustainable for everyday use.</p></li>
+</ul>
+</section>
 </section>
 
 
@@ -452,20 +490,20 @@
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="index.html"
+       href="software_map.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">About Us</p>
+        <p class="prev-next-title">The Software Landscape</p>
       </div>
     </a>
     <a class="right-next"
-       href="philosophy.html"
+       href="../examples/index.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Our Philosophy</p>
+        <p class="prev-next-title">Examples</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -481,10 +519,25 @@
 
 
   <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#right-now-documentation-examples-packaging">Right now: documentation, examples, packaging</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#next-a-protocol-driven-measurement-workflow">Next: a protocol-driven measurement workflow</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#also-on-the-bench">Also on the bench</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#further-out">Further out</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
-      <li><a href="../_sources/guides/organization.md.txt"
+      <li><a href="../_sources/about_us/roadmap.md.txt"
             rel="nofollow">Show Source</a></li>
     </ul>
    </div></div>
@@ -514,7 +567,7 @@
 
   <p class="copyright">
     
-      © Copyright 2026, Wolfgang Pfaff, Marcos Frenkel, Oliver Wolff.
+      © Copyright 2026, Tools for Experiments.
       <br/>
     
   </p>
