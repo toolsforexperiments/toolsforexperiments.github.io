@@ -7,8 +7,8 @@
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
 project = 'Tools for Experiments'
-copyright = '2026, Wolfgang Pfaff, Marcos Frenkel, Oliver Wolff'
-author = 'Wolfgang Pfaff, Marcos Frenkel, Oliver Wolff'
+copyright = '2026, Tools for Experiments'
+author = 'Tools for Experiments'
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration

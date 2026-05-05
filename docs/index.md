@@ -19,6 +19,7 @@ Our framework is aimed at any experimental physics/materials research whose expe
 
 - **[About Us](guides/index.md)** — who we are, the packages that make up the stack, and the philosophy behind how we build them. Start here if you are new to the organization.
 - **[Examples](examples/index.md)** — worked examples that show the tools in action, from a short introduction to full experiments.
+- **[What We Are Working On](roadmap.md)** — a snapshot of what is currently on our minds across the stack, and what we expect to turn to next.
 - **[Contributing](contributing/index.md)** — how to set up a development environment and contribute code or documentation to any of the repositories.
 
 ## About Us
@@ -28,7 +29,7 @@ Who we are, the packages that make up the stack, and the philosophy behind how w
 ```{toctree}
 :maxdepth: 2
 
-guides/index
+about_us/index
 ```
 
 ## Examples
